@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PM8-kZ-VQi">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scanbot Document Scanner SDK-->
+        <scene sceneID="aoW-yQ-DLJ">
+            <objects>
+                <tableViewController id="PQH-8Y-1Oo" customClass="ListTableViewController" customModule="Scanbot_Document_Usecases" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="LI2-0I-p00">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <sections>
+                            <tableViewSection id="Omo-Wi-aTS">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="CAe-95-f5a" userLabel="Single Page Scanning">
+                                        <rect key="frame" x="20" y="18" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CAe-95-f5a" id="JKc-Jz-6Et">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Page Scanning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrt-n4-pBx">
+                                                    <rect key="frame" x="20" y="11" width="294.66666666666669" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hrt-n4-pBx" firstAttribute="top" secondItem="JKc-Jz-6Et" secondAttribute="topMargin" id="3mh-EI-E19"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hrt-n4-pBx" secondAttribute="trailing" id="98h-Ig-Bc7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hrt-n4-pBx" secondAttribute="bottom" id="WVG-Ya-euE"/>
+                                                <constraint firstItem="hrt-n4-pBx" firstAttribute="leading" secondItem="JKc-Jz-6Et" secondAttribute="leadingMargin" id="qGG-pH-9UM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="7s1-Mb-HWQ" userLabel="Multi Page Scanning">
+                                        <rect key="frame" x="20" y="68" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7s1-Mb-HWQ" id="v6Z-IV-ewb">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multi Page Scanning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uI-YH-Sqk">
+                                                    <rect key="frame" x="20" y="11" width="294.66666666666669" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9uI-YH-Sqk" firstAttribute="leading" secondItem="v6Z-IV-ewb" secondAttribute="leadingMargin" id="2kv-ff-6eP"/>
+                                                <constraint firstItem="9uI-YH-Sqk" firstAttribute="top" secondItem="v6Z-IV-ewb" secondAttribute="topMargin" id="D4q-6t-c4b"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9uI-YH-Sqk" secondAttribute="bottom" id="Es9-RH-QFs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9uI-YH-Sqk" secondAttribute="trailing" id="yS7-Ec-rpa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Ifp-Ls-KRT" userLabel="Detection on Image">
+                                        <rect key="frame" x="20" y="118" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ifp-Ls-KRT" id="9Iu-dN-K4Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detection on Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-8A-Q2r">
+                                                    <rect key="frame" x="20" y="11" width="294.66666666666669" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lXT-8A-Q2r" firstAttribute="leading" secondItem="9Iu-dN-K4Q" secondAttribute="leadingMargin" id="MSU-SE-rCC"/>
+                                                <constraint firstItem="lXT-8A-Q2r" firstAttribute="top" secondItem="9Iu-dN-K4Q" secondAttribute="topMargin" id="k7l-LI-U6b"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lXT-8A-Q2r" secondAttribute="bottom" id="kUP-aU-Ecl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lXT-8A-Q2r" secondAttribute="trailing" id="tIg-Xb-qlR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="PQH-8Y-1Oo" id="aCM-Im-jLe"/>
+                            <outlet property="delegate" destination="PQH-8Y-1Oo" id="MHS-Dc-Gx7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Scanbot Document Scanner SDK" id="vlT-XP-fAP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g6p-Lh-vVi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="120" y="-89"/>
+        </scene>
+        <!--Root Navigation Controller-->
+        <scene sceneID="MHk-VR-DGb">
+            <objects>
+                <navigationController id="PM8-kZ-VQi" customClass="RootNavigationController" customModule="Scanbot_Document_Usecases" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDs-xu-N2h">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PQH-8Y-1Oo" kind="relationship" relationship="rootViewController" id="sAc-Bs-Yot"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6q2-Lv-6s2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1292" y="-89"/>
+        </scene>
+    </scenes>
+</document>
