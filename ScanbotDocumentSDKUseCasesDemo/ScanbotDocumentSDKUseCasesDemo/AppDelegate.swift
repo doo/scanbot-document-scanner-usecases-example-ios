@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ScanbotDocumentScannerSDK
+import ScanbotSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

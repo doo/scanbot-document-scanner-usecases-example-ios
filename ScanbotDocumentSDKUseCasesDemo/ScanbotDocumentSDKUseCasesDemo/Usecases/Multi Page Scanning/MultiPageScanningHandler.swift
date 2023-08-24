@@ -5,7 +5,7 @@
 //  Created by Rana Sohaib on 24.08.23.
 //
 
-import ScanbotDocumentScannerSDK
+import ScanbotSDK
 
 final class MultiPageScanningHandler: NSObject, SBSDKUIDocumentScannerViewControllerDelegate {
     

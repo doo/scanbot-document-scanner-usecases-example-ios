@@ -5,8 +5,7 @@
 //  Created by Rana Sohaib on 24.08.23.
 //
 
-import UIKit
-import ScanbotDocumentScannerSDK
+import ScanbotSDK
 
 final class SinglePageScanning: NSObject {
         
@@ -20,6 +19,7 @@ final class SinglePageScanning: NSObject {
         configuration.uiConfiguration.isAutoSnappingButtonHidden = true
         
         delegateHandler = SinglePageScanningHandler()
+        delegateHandler?.presenter = parent
         
         SBSDKUIDocumentScannerViewController.present(on: parent,
                                                      with: configuration,
