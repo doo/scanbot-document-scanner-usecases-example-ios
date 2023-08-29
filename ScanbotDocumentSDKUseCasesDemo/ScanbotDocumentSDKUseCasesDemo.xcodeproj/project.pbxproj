@@ -12,6 +12,8 @@
 		F107A8722A97A1A600387B8C /* FilterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */; };
 		F107A8752A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */; };
 		F107A87C2A97B9D400387B8C /* ScanbotSDK in Frameworks */ = {isa = PBXBuildFile; productRef = F107A87B2A97B9D400387B8C /* ScanbotSDK */; };
+		F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */; };
+		F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */; };
 		F1B0CCAC2A96332300389EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B0CCAB2A96332300389EA7 /* AppDelegate.swift */; };
 		F1B0CCAE2A96332300389EA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B0CCAD2A96332300389EA7 /* SceneDelegate.swift */; };
 		F1B0CCB32A96332300389EA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B0CCB12A96332300389EA7 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		F107A86E2A979D9F00387B8C /* FilterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewController.swift; sourceTree = "<group>"; };
 		F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListTableViewCell.swift; sourceTree = "<group>"; };
 		F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SBSDKImageFilterType+Extension.swift"; sourceTree = "<group>"; };
+		F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultViewController.swift; sourceTree = "<group>"; };
+		F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1B0CCA82A96332300389EA7 /* ScanbotDocumentSDKUseCasesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanbotDocumentSDKUseCasesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B0CCAB2A96332300389EA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1B0CCAD2A96332300389EA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 			path = Usecases;
 			sourceTree = "<group>";
 		};
+		F107A87E2A9DCFAD00387B8C /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */,
+				F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		F1B0CC9F2A96332300389EA7 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +164,7 @@
 			children = (
 				F1DB42652A974F4F00CAE7E5 /* MultiPageScanning.swift */,
 				F1F9681F2A97663E006BD876 /* MultiPageScanningHandler.swift */,
+				F107A87E2A9DCFAD00387B8C /* Result */,
 			);
 			path = "Multi Page Scanning";
 			sourceTree = "<group>";
@@ -242,8 +256,10 @@
 			files = (
 				F1F968202A97663E006BD876 /* MultiPageScanningHandler.swift in Sources */,
 				F107A8752A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift in Sources */,
+				F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */,
 				F1DB42642A974D8200CAE7E5 /* SinglePageScanning.swift in Sources */,
 				F107A86F2A979D9F00387B8C /* FilterListViewController.swift in Sources */,
+				F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */,
 				F1DB42682A974F8C00CAE7E5 /* DetectionOnImage.swift in Sources */,
 				F1B0CCAC2A96332300389EA7 /* AppDelegate.swift in Sources */,
 				F107A8722A97A1A600387B8C /* FilterListTableViewCell.swift in Sources */,

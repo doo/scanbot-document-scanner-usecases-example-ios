@@ -9,6 +9,8 @@ import ScanbotSDK
 
 final class MultiPageScanningHandler: NSObject, SBSDKUIDocumentScannerViewControllerDelegate {
     
+    var presenter: UIViewController?
+    
     func scanningViewControllerDidCancel(_ viewController: SBSDKUIDocumentScannerViewController) {
         
     }
@@ -16,6 +18,7 @@ final class MultiPageScanningHandler: NSObject, SBSDKUIDocumentScannerViewContro
     func scanningViewController(_ viewController: SBSDKUIDocumentScannerViewController,
                                 didFinishWith document: SBSDKUIDocument) {
         
-        
+        let resultViewController = MultiScanResultViewController.make(with: document)
+        presenter?.navigationController?.pushViewController(resultViewController, animated: true)
     }
 }

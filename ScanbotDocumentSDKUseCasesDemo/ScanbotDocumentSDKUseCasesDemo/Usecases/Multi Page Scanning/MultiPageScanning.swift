@@ -19,6 +19,7 @@ final class MultiPageScanning: NSObject {
         configuration.uiConfiguration.isAutoSnappingButtonHidden = true
         
         delegateHandler = MultiPageScanningHandler()
+        delegateHandler?.presenter = parent
         
         SBSDKUIDocumentScannerViewController.present(on: parent,
                                                      with: configuration,
