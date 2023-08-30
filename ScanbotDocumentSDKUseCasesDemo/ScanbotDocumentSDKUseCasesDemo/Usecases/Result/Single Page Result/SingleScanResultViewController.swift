@@ -23,10 +23,6 @@ final class SingleScanResultViewController: UIViewController {
         singlePageImageView.image = page.documentImage()
     }
     
-    @IBAction private func doneButtonPressed(_sender: UIButton) {
-        navigationController?.popViewController(animated: true)
-    }
-    
     // Apply Filter
     @IBAction private func filterButtonPressed(_ sender: UIButton) {
         let filterListViewController = FilterListViewController.make()
@@ -163,7 +159,7 @@ extension SingleScanResultViewController {
         let activityViewController = UIActivityViewController(activityItems: [url],
                                                               applicationActivities: nil)
         if let popoverPresentationController = activityViewController.popoverPresentationController {
-            popoverPresentationController.sourceItem = exportButton
+            popoverPresentationController.sourceView = exportButton
         }
         present(activityViewController, animated: true)
     }

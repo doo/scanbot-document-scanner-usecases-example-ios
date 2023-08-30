@@ -13,8 +13,11 @@ final class MultiPageScanning: NSObject {
     
     static func present(on parent: UIViewController) {
         
-        let configuration = SBSDKUIDocumentScannerConfiguration()
+        let configuration = SBSDKUIDocumentScannerConfiguration.default()
+        
         configuration.behaviorConfiguration.isMultiPageEnabled = true
+        configuration.behaviorConfiguration.isAutoSnappingEnabled = true
+        
         configuration.uiConfiguration.isMultiPageButtonHidden = true
         configuration.uiConfiguration.isAutoSnappingButtonHidden = true
         

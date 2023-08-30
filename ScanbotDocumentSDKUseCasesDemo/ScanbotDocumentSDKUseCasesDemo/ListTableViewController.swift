@@ -19,8 +19,10 @@ final class ListTableViewController: UITableViewController {
             MultiPageScanning.present(on: self)
             
         } else if indexPath.row == 2 {
+            SinglePageFinderOverlayScanning.present(on: self)
             
-            
+        } else if indexPath.row == 3 {
+            navigationController?.pushViewController(DetectionOnImageViewController.make(), animated: true)
         }
     }
 }

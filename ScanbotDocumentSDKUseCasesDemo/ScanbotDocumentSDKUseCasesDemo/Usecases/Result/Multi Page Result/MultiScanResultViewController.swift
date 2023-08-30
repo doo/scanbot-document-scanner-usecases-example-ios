@@ -92,7 +92,7 @@ extension MultiScanResultViewController {
         let activityViewController = UIActivityViewController(activityItems: [url],
                                                               applicationActivities: nil)
         if let popoverPresentationController = activityViewController.popoverPresentationController {
-            popoverPresentationController.sourceItem = exportButton
+            popoverPresentationController.sourceView = exportButton
         }
         present(activityViewController, animated: true)
     }
