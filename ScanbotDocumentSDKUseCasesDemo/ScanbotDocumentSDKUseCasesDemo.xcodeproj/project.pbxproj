@@ -15,19 +15,16 @@
 		F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */; };
 		F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */; };
 		F1719B132A9F40A500ED664E /* SinglePageFinderOverlayScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1719B122A9F40A500ED664E /* SinglePageFinderOverlayScanning.swift */; };
-		F1719B152A9F40E000ED664E /* SinglePageFinderOverlayScanningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1719B142A9F40E000ED664E /* SinglePageFinderOverlayScanningHandler.swift */; };
+		F1A681172AA08B43005EE9E7 /* BannerUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A681162AA08B43005EE9E7 /* BannerUITableViewCell.swift */; };
 		F1B0CCAC2A96332300389EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B0CCAB2A96332300389EA7 /* AppDelegate.swift */; };
 		F1B0CCAE2A96332300389EA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B0CCAD2A96332300389EA7 /* SceneDelegate.swift */; };
 		F1B0CCB32A96332300389EA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B0CCB12A96332300389EA7 /* Main.storyboard */; };
 		F1B0CCB52A96332400389EA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1B0CCB42A96332400389EA7 /* Assets.xcassets */; };
 		F1B0CCB82A96332400389EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B0CCB62A96332400389EA7 /* LaunchScreen.storyboard */; };
-		F1DB42642A974D8200CAE7E5 /* SinglePageScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB42632A974D8200CAE7E5 /* SinglePageScanning.swift */; };
 		F1DB42662A974F4F00CAE7E5 /* MultiPageScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB42652A974F4F00CAE7E5 /* MultiPageScanning.swift */; };
 		F1DB42682A974F8C00CAE7E5 /* DetectionOnImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB42672A974F8C00CAE7E5 /* DetectionOnImageViewController.swift */; };
 		F1DB426A2A9751CA00CAE7E5 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB42692A9751CA00CAE7E5 /* RootNavigationController.swift */; };
-		F1DB426C2A97522700CAE7E5 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB426B2A97522700CAE7E5 /* ListTableViewController.swift */; };
-		F1F968202A97663E006BD876 /* MultiPageScanningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9681F2A97663E006BD876 /* MultiPageScanningHandler.swift */; };
-		F1F968222A97668F006BD876 /* SinglePageScanningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F968212A97668F006BD876 /* SinglePageScanningHandler.swift */; };
+		F1DB426C2A97522700CAE7E5 /* UsecasesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB426B2A97522700CAE7E5 /* UsecasesListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +35,7 @@
 		F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultViewController.swift; sourceTree = "<group>"; };
 		F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1719B122A9F40A500ED664E /* SinglePageFinderOverlayScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageFinderOverlayScanning.swift; sourceTree = "<group>"; };
-		F1719B142A9F40E000ED664E /* SinglePageFinderOverlayScanningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageFinderOverlayScanningHandler.swift; sourceTree = "<group>"; };
+		F1A681162AA08B43005EE9E7 /* BannerUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerUITableViewCell.swift; sourceTree = "<group>"; };
 		F1B0CCA82A96332300389EA7 /* ScanbotDocumentSDKUseCasesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanbotDocumentSDKUseCasesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B0CCAB2A96332300389EA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1B0CCAD2A96332300389EA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,13 +43,10 @@
 		F1B0CCB42A96332400389EA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1B0CCB72A96332400389EA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1B0CCB92A96332400389EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1DB42632A974D8200CAE7E5 /* SinglePageScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageScanning.swift; sourceTree = "<group>"; };
 		F1DB42652A974F4F00CAE7E5 /* MultiPageScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPageScanning.swift; sourceTree = "<group>"; };
 		F1DB42672A974F8C00CAE7E5 /* DetectionOnImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionOnImageViewController.swift; sourceTree = "<group>"; };
 		F1DB42692A9751CA00CAE7E5 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
-		F1DB426B2A97522700CAE7E5 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
-		F1F9681F2A97663E006BD876 /* MultiPageScanningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPageScanningHandler.swift; sourceTree = "<group>"; };
-		F1F968212A97668F006BD876 /* SinglePageScanningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageScanningHandler.swift; sourceTree = "<group>"; };
+		F1DB426B2A97522700CAE7E5 /* UsecasesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsecasesListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +64,9 @@
 		F107A86D2A979D8200387B8C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F1DB42692A9751CA00CAE7E5 /* RootNavigationController.swift */,
 				F107A86E2A979D9F00387B8C /* FilterListViewController.swift */,
-				F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */,
+				F1A681152AA08B1F005EE9E7 /* Cells */,
 				F107A8732A97A2A400387B8C /* Extensions */,
 			);
 			path = Helpers;
@@ -88,9 +83,8 @@
 		F107A87D2A989D1700387B8C /* Usecases */ = {
 			isa = PBXGroup;
 			children = (
-				F1B0CCC32A96344B00389EA7 /* Single Page Scanning */,
-				F1B0CCC42A96345800389EA7 /* Multi Page Scanning */,
-				F1719B112A9F404100ED664E /* Single Page Finder Overlay */,
+				F1B0CCC42A96345800389EA7 /* Normal Document Scanner */,
+				F1719B112A9F404100ED664E /* Single-Page Finder Overlay Scanner */,
 				F1B0CCC52A96346B00389EA7 /* Detection on Image */,
 				F107A8832A9E11F100387B8C /* Result */,
 			);
@@ -123,13 +117,21 @@
 			path = "Single Page Result";
 			sourceTree = "<group>";
 		};
-		F1719B112A9F404100ED664E /* Single Page Finder Overlay */ = {
+		F1719B112A9F404100ED664E /* Single-Page Finder Overlay Scanner */ = {
 			isa = PBXGroup;
 			children = (
 				F1719B122A9F40A500ED664E /* SinglePageFinderOverlayScanning.swift */,
-				F1719B142A9F40E000ED664E /* SinglePageFinderOverlayScanningHandler.swift */,
 			);
-			path = "Single Page Finder Overlay";
+			path = "Single-Page Finder Overlay Scanner";
+			sourceTree = "<group>";
+		};
+		F1A681152AA08B1F005EE9E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */,
+				F1A681162AA08B43005EE9E7 /* BannerUITableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F1B0CC9F2A96332300389EA7 = {
@@ -152,11 +154,10 @@
 			isa = PBXGroup;
 			children = (
 				F107A87D2A989D1700387B8C /* Usecases */,
+				F1DB426B2A97522700CAE7E5 /* UsecasesListTableViewController.swift */,
+				F1B0CCB12A96332300389EA7 /* Main.storyboard */,
 				F1B0CCAB2A96332300389EA7 /* AppDelegate.swift */,
 				F1B0CCAD2A96332300389EA7 /* SceneDelegate.swift */,
-				F1B0CCB12A96332300389EA7 /* Main.storyboard */,
-				F1DB426B2A97522700CAE7E5 /* ListTableViewController.swift */,
-				F1DB42692A9751CA00CAE7E5 /* RootNavigationController.swift */,
 				F107A86D2A979D8200387B8C /* Helpers */,
 				F1B0CCC22A96340400389EA7 /* Supporting Files */,
 			);
@@ -173,22 +174,12 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F1B0CCC32A96344B00389EA7 /* Single Page Scanning */ = {
-			isa = PBXGroup;
-			children = (
-				F1DB42632A974D8200CAE7E5 /* SinglePageScanning.swift */,
-				F1F968212A97668F006BD876 /* SinglePageScanningHandler.swift */,
-			);
-			path = "Single Page Scanning";
-			sourceTree = "<group>";
-		};
-		F1B0CCC42A96345800389EA7 /* Multi Page Scanning */ = {
+		F1B0CCC42A96345800389EA7 /* Normal Document Scanner */ = {
 			isa = PBXGroup;
 			children = (
 				F1DB42652A974F4F00CAE7E5 /* MultiPageScanning.swift */,
-				F1F9681F2A97663E006BD876 /* MultiPageScanningHandler.swift */,
 			);
-			path = "Multi Page Scanning";
+			path = "Normal Document Scanner";
 			sourceTree = "<group>";
 		};
 		F1B0CCC52A96346B00389EA7 /* Detection on Image */ = {
@@ -276,11 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1F968202A97663E006BD876 /* MultiPageScanningHandler.swift in Sources */,
 				F107A8752A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift in Sources */,
 				F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */,
-				F1DB42642A974D8200CAE7E5 /* SinglePageScanning.swift in Sources */,
 				F107A86F2A979D9F00387B8C /* FilterListViewController.swift in Sources */,
+				F1A681172AA08B43005EE9E7 /* BannerUITableViewCell.swift in Sources */,
 				F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */,
 				F1DB42682A974F8C00CAE7E5 /* DetectionOnImageViewController.swift in Sources */,
 				F1B0CCAC2A96332300389EA7 /* AppDelegate.swift in Sources */,
@@ -290,9 +280,7 @@
 				F1B0CCAE2A96332300389EA7 /* SceneDelegate.swift in Sources */,
 				F1DB426A2A9751CA00CAE7E5 /* RootNavigationController.swift in Sources */,
 				F1DB42662A974F4F00CAE7E5 /* MultiPageScanning.swift in Sources */,
-				F1719B152A9F40E000ED664E /* SinglePageFinderOverlayScanningHandler.swift in Sources */,
-				F1DB426C2A97522700CAE7E5 /* ListTableViewController.swift in Sources */,
-				F1F968222A97668F006BD876 /* SinglePageScanningHandler.swift in Sources */,
+				F1DB426C2A97522700CAE7E5 /* UsecasesListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

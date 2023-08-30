@@ -14,30 +14,39 @@ final class SingleScanResultViewController: UIViewController {
     @IBOutlet private var exportButton: UIButton!
     
     var document: SBSDKUIDocument!
-    private var page: SBSDKUIPage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        page = document.page(at: 0)
-        singlePageImageView.image = page.documentImage()
+        // Set the cropped image
+        singlePageImageView.image = document.page(at: 0)?.documentImage()
     }
     
     // Apply Filter
-    @IBAction private func filterButtonPressed(_ sender: UIButton) {
+    @IBAction private func filterButtonTapped(_ sender: UIButton) {
+        
         let filterListViewController = FilterListViewController.make()
+        
+        // Filter selection callback handler
         filterListViewController.selectedFilter = { [weak self] selectedFilter in
-            self?.page.filter = selectedFilter
-            self?.singlePageImageView.image = self?.page.documentImage()
+            
+            self?.document.page(at: 0)?.filter = selectedFilter
+            self?.singlePageImageView.image = self?.document.page(at: 0)?.documentImage()
         }
-        navigationController?.present(filterListViewController, animated: true)
+        
+        self.present(filterListViewController, animated: true)
     }
     
     // Manual Cropping
-    @IBAction private func manualCropButtonPressed(_ sender: UIButton) {
+    @IBAction private func manualCropButtonTapped(_ sender: UIButton) {
         
+        // Get the page
+        guard let page = document.page(at: 0) else { return }
+        
+        // Initialize document scanner configuration object using default configurations
         let configuration = SBSDKUICroppingScreenConfiguration.default()
         
+        // Present the cropping view controller
         SBSDKUICroppingViewController.present(on: self,
                                               with: page,
                                               with: configuration,
@@ -45,23 +54,29 @@ final class SingleScanResultViewController: UIViewController {
     }
     
     // Blur Estimate
-    @IBAction private func detectBlurButtonPressed(_ sender: UIButton) {
+    @IBAction private func detectBlurButtonTapped(_ sender: UIButton) {
         
+        // Get the cropped image
         guard let documentPageImage = document.page(at: 0)?.documentImage() else { return }
         
+        // Initialize blur estimator
         let blurEstimator = SBSDKBlurrinessEstimator()
+        
+        // Get the blur estimate by passed the image to the estimator
         let blurEstimate = blurEstimator.estimateImageBlurriness(documentPageImage)
         
         blurLabel.text = "Blur estimate: \(round(blurEstimate * 100)/100)"
     }
     
     // Export
-    @IBAction private func exportButtonPressed(_ sender: UIButton) {
+    @IBAction private func exportButtonTapped(_ sender: UIButton) {
         showExportDialogue(sender)
     }
     
     // Export to PNG
-    func exportPNG() {
+    private func exportPNG() {
+        
+        // Set the name and path for the png file
         let name = "ScanbotSDK_PNG_Example.png"
         let pngURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
@@ -78,7 +93,9 @@ final class SingleScanResultViewController: UIViewController {
     }
     
     // Export to JPG
-    func exportJPG() {
+    private func exportJPG() {
+        
+        // Set the name and path for the jpg file
         let name = "ScanbotSDK_JPG_Example.jpg"
         let jpgURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
@@ -91,52 +108,73 @@ final class SingleScanResultViewController: UIViewController {
             print(error)
         }
         
+        // Present the share screen
         share(url: jpgURL)
     }
     
     // Export to PDF
-    func exportPDF() {
+    private func exportPDF() {
+        
+        // Set the name and path for the pdf file
         let name = "ScanbotSDK_PDF_Example.pdf"
         let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
         var error: Error?
+        
+        // Renders the document into a PDF at the specified file url
         error = SBSDKUIPDFRenderer.renderDocument(document,
                                                   with: .auto,
                                                   output: pdfURL)
         if error == nil {
+            
+            // Present the share screen
             share(url: pdfURL)
+            
         } else {
             print(error as Any)
         }
     }
     
     // Export to TIFF
-    func exportTIFF() {
+    private func exportTIFF() {
         
+        // Set the name and path for the tiff file
         let name = "ScanbotSDK_TIFF_Example.tiff"
         let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
+        // Get the cropped images of all the pages of the document
         let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
+        
+        // Use `SBSDKTIFFImageWriter` to write tiff at the specified file url
+        // and get the result
         let result = SBSDKTIFFImageWriter.writeTIFF(images,
                                                     fileURL: fileURL,
                                                     parameters: SBSDKTIFFImageWriterParameters.default())
         if result == true {
+            
+            // Present the share screen if file is successfully written
             share(url: fileURL)
         }
     }
 }
 
+// Delegate protocol for `SBSDKUICroppingViewController`
 extension SingleScanResultViewController: SBSDKUICroppingViewControllerDelegate {
     
+    // Informs the delegate that the polygon or orientation of the edited page was changed
+    // and the cropping view controller did dismiss
     func croppingViewController(_ viewController: SBSDKUICroppingViewController,
                                 didFinish changedPage: SBSDKUIPage) {
-        self.page = changedPage
+        
+        self.document.removePage(at: 0)
+        self.document.insert(changedPage, at: 0)
         self.singlePageImageView.image = changedPage.documentImage()
     }
 }
 
 extension SingleScanResultViewController {
     
+    // To show export dialogue
     private func showExportDialogue(_ sourceButton: UIButton) {
         
         let alertController = UIAlertController(title: "Export Document",
@@ -155,6 +193,7 @@ extension SingleScanResultViewController {
         self.present(alertController, animated: true)
     }
     
+    // To show activity (share) screen
     private func share(url: URL) {
         let activityViewController = UIActivityViewController(activityItems: [url],
                                                               applicationActivities: nil)

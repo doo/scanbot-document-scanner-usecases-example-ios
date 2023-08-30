@@ -7,7 +7,7 @@
 
 import ScanbotSDK
 
-class MultiScanResultViewController: UIViewController {
+final class MultiScanResultViewController: UIViewController {
     
     var document: SBSDKUIDocument!
     
@@ -15,9 +15,10 @@ class MultiScanResultViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     
     // Apply Filter
-    @IBAction private func filterButtonPressed(_ sender: UIButton) {
+    @IBAction private func filterButtonTapped(_ sender: UIButton) {
         let filterListViewController = FilterListViewController.make()
         
+        // Filter selection callback handler
         filterListViewController.selectedFilter = { [weak self] selectedFilter in
             
             let numberOfPages = self?.document.numberOfPages() ?? 0
@@ -31,7 +32,7 @@ class MultiScanResultViewController: UIViewController {
     }
     
     // Export
-    @IBAction private func exportButtonPressed(_ sender: UIButton) {
+    @IBAction private func exportButtonTapped(_ sender: UIButton) {
         showExportDialogue(sender)
     }
 }
@@ -39,15 +40,21 @@ class MultiScanResultViewController: UIViewController {
 extension MultiScanResultViewController {
     
     // Export to PDF
-    func exportPDF() {
+    private func exportPDF() {
+        
+        // Set the name and path for the pdf file
         let name = "ScanbotSDK_PDF_Example.pdf"
         let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
         var error: Error?
+        
+        // Renders the document into a PDF at the specified file url
         error = SBSDKUIPDFRenderer.renderDocument(document,
                                                   with: .auto,
                                                   output: pdfURL)
         if error == nil {
+            
+            // Present the share screen
             share(url: pdfURL)
         } else {
             print(error as Any)
@@ -55,16 +62,20 @@ extension MultiScanResultViewController {
     }
     
     // Export to TIFF
-    func exportTIFF() {
+    private func exportTIFF() {
         
+        // Set the name and path for the tiff file
         let name = "ScanbotSDK_TIFF_Example.tiff"
         let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
+        // Get the cropped images of all the pages of the document
         let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
         let result = SBSDKTIFFImageWriter.writeTIFF(images,
                                                     fileURL: fileURL,
                                                     parameters: SBSDKTIFFImageWriterParameters.default())
         if result == true {
+            
+            // Present the share screen if file is successfully written
             share(url: fileURL)
         }
     }
@@ -72,6 +83,7 @@ extension MultiScanResultViewController {
 
 extension MultiScanResultViewController {
     
+    // To show export dialogue
     private func showExportDialogue(_ sourceButton: UIButton) {
         
         let alertController = UIAlertController(title: "Export Document",
@@ -88,6 +100,7 @@ extension MultiScanResultViewController {
         self.present(alertController, animated: true)
     }
     
+    // To show activity (share) screen
     private func share(url: URL) {
         let activityViewController = UIActivityViewController(activityItems: [url],
                                                               applicationActivities: nil)

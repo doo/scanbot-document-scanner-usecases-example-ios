@@ -7,6 +7,6 @@
 
 import UIKit
 
-class MultiScanResultCollectionViewCell: UICollectionViewCell {
+final class MultiScanResultCollectionViewCell: UICollectionViewCell {
     @IBOutlet var resultImageView: UIImageView!
 }

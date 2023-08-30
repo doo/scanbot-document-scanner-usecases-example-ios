@@ -22,7 +22,7 @@ final class FilterListViewController: UIViewController, UITableViewDataSource, U
         }
     }
     
-    @IBAction private func doneButtonPressed(_ sender: UIButton) {
+    @IBAction private func doneButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     

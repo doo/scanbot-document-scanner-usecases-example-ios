@@ -8,7 +8,15 @@
 import PhotosUI
 import ScanbotSDK
 
-class DetectionOnImageViewController: UIViewController {
+final class DetectionOnImageViewController: UIViewController {
+    
+    @IBOutlet private var uploadImageButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        uploadImageButton.layer.cornerRadius = 8
+    }
     
     private func showResult(for pickedImages: [UIImage]) {
         
@@ -16,32 +24,53 @@ class DetectionOnImageViewController: UIViewController {
         if pickedImages.count == 1,
             let image = pickedImages.first {
             
+            // Create a document page by passing the image
+            // You can pass the polygon of the area where the document is located within the pages image
+            // You can also pass the type of the filter you want to apple on the page
             let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
             
-            guard let result = page.detectDocument(true), result.isDetectionStatusOK
-            else { return }
+            // Detect a document on the page and check if the detection was successful
+            guard let result = page.detectDocument(true), result.isDetectionStatusOK else { return }
             
+            // Set the detected polygon on the document page
+            page.polygon = result.polygon
+            
+            // Create an instance of a document
             let document = SBSDKUIDocument()
             
+            // Insert the page in the document
             document.insert(page, at: 0)
             
+            // Process the document
             let resultViewController = SingleScanResultViewController.make(with: document)
             self.navigationController?.pushViewController(resultViewController, animated: true)
+            
             
         // If multiple images are picked
         } else if pickedImages.count > 1 {
             
+            // Make an instance of the document
             let document = SBSDKUIDocument()
             
+            // Iterate over multiple picked images
             pickedImages.forEach { image in
                 
+                // Create a document page by passing the image
+                // You can pass the polygon of the area where the document is located within the pages image
+                // You can also pass the type of the filter you want to apple on the page
                 let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
                 
+                // Detect a document on the page and check if the detection was successful
                 guard let result = page.detectDocument(true), result.isDetectionStatusOK else { return }
                 
+                // Set the detected polygon on the document page
+                page.polygon = result.polygon
+                
+                // Insert the page in the document
                 document.insert(page, at: document.numberOfPages())
             }
             
+            // Process the document
             let resultViewController = MultiScanResultViewController.make(with: document)
             self.navigationController?.pushViewController(resultViewController, animated: true)
         }
@@ -50,7 +79,7 @@ class DetectionOnImageViewController: UIViewController {
 
 extension DetectionOnImageViewController {
     
-    @IBAction private func uploadImage(_ sender: UIButton) {
+    @IBAction private func uploadImageButtonTapped(_ sender: UIButton) {
         
         if #available(iOS 14.0, *) {
             

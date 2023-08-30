@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootNavigationController: UINavigationController {
+final class RootNavigationController: UINavigationController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
