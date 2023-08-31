@@ -51,6 +51,15 @@ extension SinglePageFinderOverlayScanning {
         // Set the aspect ratio for the finder overlay
         configuration.uiConfiguration.finderAspectRatio = SBSDKAspectRatio(width: 3, andHeight: 4)
         
+        
+        // Set the font for the hint text
+        configuration.textConfiguration.textHintFontSize = 16.0
+        
+        // Configure the hint texts for different scenarios
+        configuration.textConfiguration.textHintTooDark = "Need more lighting to detect a document"
+        configuration.textConfiguration.textHintTooSmall = "Document too small"
+        configuration.textConfiguration.textHintNothingDetected = "Could not detect a document"
+        
         // Present the document scanner on the presenter (presenter in our case is the UsecasesListTableViewController)
         SBSDKUIFinderDocumentScannerViewController.present(on: presenter,
                                                            with: configuration,

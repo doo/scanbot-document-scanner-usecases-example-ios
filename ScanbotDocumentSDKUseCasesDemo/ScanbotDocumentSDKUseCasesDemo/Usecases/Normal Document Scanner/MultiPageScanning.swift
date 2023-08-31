@@ -57,6 +57,14 @@ extension NormalDocumentScanning {
         // Hide the auto snapping enable/disable button
         configuration.uiConfiguration.isAutoSnappingButtonHidden = true
         
+        // Set the font for the hint text
+        configuration.textConfiguration.textHintFontSize = 16.0
+        
+        // Configure the hint texts for different scenarios
+        configuration.textConfiguration.textHintTooDark = "Need more lighting to detect a document"
+        configuration.textConfiguration.textHintTooSmall = "Document too small"
+        configuration.textConfiguration.textHintNothingDetected = "Could not detect a document"
+        
         // Present the document scanner on the presenter (presenter in our case is the UsecasesListTableViewController)
         SBSDKUIDocumentScannerViewController.present(on: presenter,
                                                      with: configuration,
