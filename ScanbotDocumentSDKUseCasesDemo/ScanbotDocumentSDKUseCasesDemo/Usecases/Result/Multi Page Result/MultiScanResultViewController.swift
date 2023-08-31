@@ -87,8 +87,8 @@ extension MultiScanResultViewController {
     private func showExportDialogue(_ sourceButton: UIButton) {
         
         let alertController = UIAlertController(title: "Export Document",
-                                                 message: nil,
-                                                 preferredStyle: .alert)
+                                                message: nil,
+                                                preferredStyle: .alert)
         
         let pdfAction = UIAlertAction(title: "Export to PDF", style: .default) { _ in self.exportPDF() }
         let tiffAction = UIAlertAction(title: "Export to TIFF", style: .default) { _ in self.exportTIFF() }
@@ -120,7 +120,8 @@ extension MultiScanResultViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MultiScanResultCollectionViewCell", for: indexPath) as! MultiScanResultCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MultiScanResultCollectionViewCell",
+                                                      for: indexPath) as! MultiScanResultCollectionViewCell
         let pageImage = document.page(at: indexPath.row)?.documentImage()
         cell.resultImageView.image = pageImage
         return cell

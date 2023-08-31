@@ -22,11 +22,11 @@ final class DetectionOnImageViewController: UIViewController {
         
         // If only one image is picked
         if pickedImages.count == 1,
-            let image = pickedImages.first {
+           let image = pickedImages.first {
             
             // Create a document page by passing the image
             // You can pass the polygon of the area where the document is located within the pages image
-            // You can also pass the type of the filter you want to apple on the page
+            // You can also pass the type of the filter you want to apply on the page
             let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
             
             // Detect a document on the page and check if the detection was successful
@@ -46,7 +46,7 @@ final class DetectionOnImageViewController: UIViewController {
             self.navigationController?.pushViewController(resultViewController, animated: true)
             
             
-        // If multiple images are picked
+            // If multiple images are picked
         } else if pickedImages.count > 1 {
             
             // Make an instance of the document
@@ -57,7 +57,7 @@ final class DetectionOnImageViewController: UIViewController {
                 
                 // Create a document page by passing the image
                 // You can pass the polygon of the area where the document is located within the pages image
-                // You can also pass the type of the filter you want to apple on the page
+                // You can also pass the type of the filter you want to apply on the page
                 let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
                 
                 // Detect a document on the page and check if the detection was successful
@@ -149,7 +149,7 @@ extension DetectionOnImageViewController: UIImagePickerControllerDelegate, UINav
         }
         self.showResult(for: [image])
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
@@ -158,7 +158,7 @@ extension DetectionOnImageViewController: UIImagePickerControllerDelegate, UINav
 extension DetectionOnImageViewController {
     static func make() -> DetectionOnImageViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController  = storyboard.instantiateViewController(identifier: "DetectionOnImageViewController")
+        let viewController = storyboard.instantiateViewController(identifier: "DetectionOnImageViewController")
         as! DetectionOnImageViewController
         return viewController
     }

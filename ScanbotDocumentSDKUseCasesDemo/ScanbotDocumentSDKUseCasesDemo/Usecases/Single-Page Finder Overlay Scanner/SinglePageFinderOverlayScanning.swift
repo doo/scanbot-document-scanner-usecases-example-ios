@@ -8,7 +8,7 @@
 import ScanbotSDK
 
 final class SinglePageFinderOverlayScanning: NSObject, SBSDKUIFinderDocumentScannerViewControllerDelegate {
-        
+    
     // The view controller on which the scanner is presented on
     private var presenter: UIViewController?
     

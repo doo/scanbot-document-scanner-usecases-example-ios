@@ -51,7 +51,7 @@ extension NormalDocumentScanning {
         // Enable Auto Snapping behavior
         configuration.behaviorConfiguration.isAutoSnappingEnabled = true
         
-        // Hide the multi page behavior enable/disable button
+        // Hide the multi page enable/disable button
         configuration.uiConfiguration.isMultiPageButtonHidden = true
         
         // Hide the auto snapping enable/disable button

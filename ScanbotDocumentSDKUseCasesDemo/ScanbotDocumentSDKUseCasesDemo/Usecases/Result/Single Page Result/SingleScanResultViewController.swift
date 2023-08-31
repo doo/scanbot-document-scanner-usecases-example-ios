@@ -62,7 +62,7 @@ final class SingleScanResultViewController: UIViewController {
         // Initialize blur estimator
         let blurEstimator = SBSDKBlurrinessEstimator()
         
-        // Get the blur estimate by passed the image to the estimator
+        // Get the blur estimate by passing the image to the estimator
         let blurEstimate = blurEstimator.estimateImageBlurriness(documentPageImage)
         
         blurLabel.text = "Blur estimate: \(round(blurEstimate * 100)/100)"
@@ -89,6 +89,7 @@ final class SingleScanResultViewController: UIViewController {
             print(error)
         }
         
+        // Present the share screen
         share(url: pngURL)
     }
     
@@ -178,8 +179,8 @@ extension SingleScanResultViewController {
     private func showExportDialogue(_ sourceButton: UIButton) {
         
         let alertController = UIAlertController(title: "Export Document",
-                                                 message: nil,
-                                                 preferredStyle: .alert)
+                                                message: nil,
+                                                preferredStyle: .alert)
         
         let pngAction = UIAlertAction(title: "Export to PNG", style: .default) { _ in self.exportPNG() }
         let jpgAction = UIAlertAction(title: "Export to JPG", style: .default) { _ in self.exportJPG() }
