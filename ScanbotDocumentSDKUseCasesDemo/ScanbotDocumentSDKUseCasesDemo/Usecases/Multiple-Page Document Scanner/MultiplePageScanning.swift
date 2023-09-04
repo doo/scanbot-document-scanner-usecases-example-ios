@@ -1,5 +1,5 @@
 //
-//  NormalDocumentScanning.swift
+//  MultiplePageScanning.swift
 //  Scanbot Document Usecases
 //
 //  Created by Rana Sohaib on 24.08.23.
@@ -7,7 +7,7 @@
 
 import ScanbotSDK
 
-final class NormalDocumentScanning: NSObject, SBSDKUIDocumentScannerViewControllerDelegate {
+final class MultiplePageScanning: NSObject, SBSDKUIDocumentScannerViewControllerDelegate {
     
     // The view controller on which the scanner is presented on
     private var presenter: UIViewController?
@@ -22,8 +22,15 @@ final class NormalDocumentScanning: NSObject, SBSDKUIDocumentScannerViewControll
                                 didFinishWith document: SBSDKUIDocument) {
         
         // Process the document
-        let resultViewController = MultiScanResultViewController.make(with: document)
-        presenter?.navigationController?.pushViewController(resultViewController, animated: true)
+        
+        if document.numberOfPages() == 1 {
+            let resultViewController = SingleScanResultViewController.make(with: document)
+            presenter?.navigationController?.pushViewController(resultViewController, animated: true)
+            
+        } else if document.numberOfPages() > 1 {
+            let resultViewController = MultiScanResultViewController.make(with: document)
+            presenter?.navigationController?.pushViewController(resultViewController, animated: true)
+        }
     }
     
     // The scanner view controller calls this delegate method to inform that it has been cancelled and dismissed
@@ -32,26 +39,26 @@ final class NormalDocumentScanning: NSObject, SBSDKUIDocumentScannerViewControll
     }
 }
 
-extension NormalDocumentScanning {
+extension MultiplePageScanning {
     
     // To hold an instance of the delegate handler
-    private static var delegateHandler: NormalDocumentScanning?
+    private static var delegateHandler: MultiplePageScanning?
     
     static func present(presenter: UIViewController) {
         
         // Initialize delegate handler
-        delegateHandler = NormalDocumentScanning(presenter: presenter)
+        delegateHandler = MultiplePageScanning(presenter: presenter)
         
         // Initialize document scanner configuration object using default configurations
         let configuration = SBSDKUIDocumentScannerConfiguration.default()
         
-        // Enable the multi page behavior
+        // Enable the multiple page behavior
         configuration.behaviorConfiguration.isMultiPageEnabled = true
         
         // Enable Auto Snapping behavior
         configuration.behaviorConfiguration.isAutoSnappingEnabled = true
         
-        // Hide the multi page enable/disable button
+        // Hide the multiple page enable/disable button
         configuration.uiConfiguration.isMultiPageButtonHidden = true
         
         // Hide the auto snapping enable/disable button

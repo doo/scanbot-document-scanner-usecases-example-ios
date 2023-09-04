@@ -16,18 +16,23 @@ final class UsecasesListTableViewController: UITableViewController {
         
         if indexPath.row == 0 {
             
-            // Present Normal Document Scanner on this table view controller
-            NormalDocumentScanning.present(presenter: self)
+            // Present single page document scanner on this table view controller
+            SinglePageScanning.present(presenter: self)
             
         } else if indexPath.row == 1 {
             
-            // Present Single Page Scanner with Finder Overlay on this table view controller
-            SinglePageFinderOverlayScanning.present(presenter: self)
+            // Present multiple page document scanner on this table view controller
+            MultiplePageScanning.present(presenter: self)
             
         } else if indexPath.row == 2 {
             
-            // Navigate to Detection on image view controller
-            navigationController?.pushViewController(DetectionOnImageViewController.make(),
+            // Present single page scanner with finder overlay on this table view controller
+            SinglePageFinderOverlayScanning.present(presenter: self)
+            
+        } else if indexPath.row == 3 {
+            
+            // Navigate to detection on image view controller
+            navigationController?.pushViewController(GalleryUploadViewController.make(),
                                                      animated: true)
         }
     }

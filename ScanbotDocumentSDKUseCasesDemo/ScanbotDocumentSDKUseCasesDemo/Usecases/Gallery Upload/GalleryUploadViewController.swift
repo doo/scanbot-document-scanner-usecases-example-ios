@@ -1,5 +1,5 @@
 //
-//  DetectionOnImageViewController.swift
+//  GalleryUploadViewController.swift
 //  Scanbot Document Usecases
 //
 //  Created by Rana Sohaib on 24.08.23.
@@ -8,7 +8,7 @@
 import PhotosUI
 import ScanbotSDK
 
-final class DetectionOnImageViewController: UIViewController {
+final class GalleryUploadViewController: UIViewController {
     
     @IBOutlet private var uploadImageButton: UIButton!
     
@@ -77,7 +77,7 @@ final class DetectionOnImageViewController: UIViewController {
     }
 }
 
-extension DetectionOnImageViewController {
+extension GalleryUploadViewController {
     
     @IBAction private func uploadImageButtonTapped(_ sender: UIButton) {
         
@@ -103,7 +103,7 @@ extension DetectionOnImageViewController {
 
 // Image Picker for iOS 14 and above
 @available(iOS 14.0, *)
-extension DetectionOnImageViewController: PHPickerViewControllerDelegate {
+extension GalleryUploadViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
@@ -137,7 +137,7 @@ extension DetectionOnImageViewController: PHPickerViewControllerDelegate {
 }
 
 // Image picker for iOS 13
-extension DetectionOnImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension GalleryUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -155,11 +155,11 @@ extension DetectionOnImageViewController: UIImagePickerControllerDelegate, UINav
     }
 }
 
-extension DetectionOnImageViewController {
-    static func make() -> DetectionOnImageViewController {
+extension GalleryUploadViewController {
+    static func make() -> GalleryUploadViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(identifier: "DetectionOnImageViewController")
-        as! DetectionOnImageViewController
+        let viewController = storyboard.instantiateViewController(identifier: "GalleryUploadViewController")
+        as! GalleryUploadViewController
         return viewController
     }
 }
