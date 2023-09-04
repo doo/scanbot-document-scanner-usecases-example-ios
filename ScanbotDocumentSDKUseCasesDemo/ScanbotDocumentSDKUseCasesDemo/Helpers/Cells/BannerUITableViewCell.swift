@@ -10,7 +10,7 @@ import UIKit
 class BannerUITableViewCell: UITableViewCell {
     
     @IBAction func contactSupportTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://scanbot.io/documentdemo-contact-ios/") {
+        if let url = URL(string: "https://docs.scanbot.io/support/") {
             UIApplication.shared.open(url)
         }
     }
