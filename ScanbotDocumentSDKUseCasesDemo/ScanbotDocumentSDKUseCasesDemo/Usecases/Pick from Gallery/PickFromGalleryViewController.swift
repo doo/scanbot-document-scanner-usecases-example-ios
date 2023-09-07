@@ -32,7 +32,7 @@ final class PickFromGalleryViewController: UIViewController {
             // Detect a document on the page
             let result = page.detectDocument(true)
             
-            // Set the detected polygon (if any), on the document page
+            // Set the detected polygon (if any) on the document page
             page.polygon = result?.polygon
             
             // Create an instance of a document
@@ -63,7 +63,7 @@ final class PickFromGalleryViewController: UIViewController {
                 // Detect a document on the page
                 let result = page.detectDocument(true)
                 
-                // Set the detected polygon (if any), on the document page
+                // Set the detected polygon (if any) on the document page
                 page.polygon = result?.polygon
                 
                 // Insert the page in the document

@@ -64,7 +64,7 @@ extension MultiScanResultViewController {
     // Export to TIFF
     private func exportTIFF() {
         
-        // Set the name and path for the tiff file
+        // Set the name and path for the TIFF file
         let name = "ScanbotSDK_TIFF_Example.tiff"
         let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
@@ -72,14 +72,14 @@ extension MultiScanResultViewController {
         let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
         
         // Define export parameters for the TIFF
-        // Always using SBSDKImageFilterTypeLowLightBinarization2 filter when exporting as TIFF
+        // Always using `SBSDKImageFilterTypeLowLightBinarization2` filter when exporting as TIFF
         // as an optimal setting
         let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages()
         tiffExportParameters.dpi = 300
         tiffExportParameters.compression = .COMPRESSION_CCITT_T6
         tiffExportParameters.binarizationFilter = SBSDKImageFilterTypeLowLightBinarization2
         
-        // Use `SBSDKTIFFImageWriter` to write tiff at the specified file url
+        // Use `SBSDKTIFFImageWriter` to write TIFF at the specified file url
         // and get the result
         let result = SBSDKTIFFImageWriter.writeTIFF(images,
                                                     fileURL: fileURL,
