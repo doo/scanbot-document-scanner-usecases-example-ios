@@ -86,14 +86,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Ifp-Ls-KRT" userLabel="Gallery Upload">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Ifp-Ls-KRT" userLabel="Pick from Gallery">
                                         <rect key="frame" x="20" y="168" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ifp-Ls-KRT" id="9Iu-dN-K4Q">
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery Upload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-8A-Q2r" userLabel="Gallery Upload">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick from Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-8A-Q2r" userLabel="Gallery Upload">
                                                     <rect key="frame" x="20" y="11" width="294.66666666666669" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -451,10 +451,10 @@
             </objects>
             <point key="canvasLocation" x="1155" y="675"/>
         </scene>
-        <!--Gallery Upload View Controller-->
+        <!--Pick From Gallery View Controller-->
         <scene sceneID="Ckr-gz-mcy">
             <objects>
-                <viewController storyboardIdentifier="GalleryUploadViewController" id="SwU-QG-QEs" customClass="GalleryUploadViewController" customModule="ScanbotDocumentSDKUseCasesDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PickFromGalleryViewController" id="SwU-QG-QEs" customClass="PickFromGalleryViewController" customModule="ScanbotDocumentSDKUseCasesDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bHh-ni-kvL"/>
                         <viewControllerLayoutGuide type="bottom" id="wPk-TT-l87"/>
@@ -464,14 +464,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXV-RA-QOd">
-                                <rect key="frame" x="131.66666666666666" y="406" width="129.99999999999997" height="40"/>
+                                <rect key="frame" x="121.66666666666669" y="406" width="150" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18n-Cv-u6O">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
                                         <color key="backgroundColor" red="0.7839999794960022" green="0.097999997437000275" blue="0.23499999940395355" alpha="0.14579884105960264" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Upload Image">
+                                        <state key="normal" title="Pick from Gallery">
                                             <color key="titleColor" name="AccentColor"/>
                                         </state>
                                         <connections>
@@ -481,7 +481,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="0Kh-Pf-IHG"/>
+                                    <constraint firstAttribute="width" constant="150" id="0Kh-Pf-IHG"/>
                                     <constraint firstAttribute="height" constant="40" id="6LT-BH-AaO"/>
                                     <constraint firstItem="18n-Cv-u6O" firstAttribute="leading" secondItem="DXV-RA-QOd" secondAttribute="leading" id="KXW-gM-GaX"/>
                                     <constraint firstItem="18n-Cv-u6O" firstAttribute="top" secondItem="DXV-RA-QOd" secondAttribute="top" id="Skn-jJ-9Ay"/>

@@ -64,15 +64,26 @@ extension MultiScanResultViewController {
     // Export to TIFF
     private func exportTIFF() {
         
-        // Set the name and path for the tiff file
+        // Set the name and path for the TIFF file
         let name = "ScanbotSDK_TIFF_Example.tiff"
         let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
         
         // Get the cropped images of all the pages of the document
         let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
+        
+        // Define export parameters for the TIFF
+        // Always using `SBSDKImageFilterTypeLowLightBinarization2` filter when exporting as TIFF
+        // as an optimal setting
+        let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages()
+        tiffExportParameters.dpi = 300
+        tiffExportParameters.compression = .COMPRESSION_CCITT_T6
+        tiffExportParameters.binarizationFilter = SBSDKImageFilterTypeLowLightBinarization2
+        
+        // Use `SBSDKTIFFImageWriter` to write TIFF at the specified file url
+        // and get the result
         let result = SBSDKTIFFImageWriter.writeTIFF(images,
                                                     fileURL: fileURL,
-                                                    parameters: SBSDKTIFFImageWriterParameters.default())
+                                                    parameters: tiffExportParameters)
         if result == true {
             
             // Present the share screen if file is successfully written
@@ -90,8 +101,8 @@ extension MultiScanResultViewController {
                                                 message: nil,
                                                 preferredStyle: .alert)
         
-        let pdfAction = UIAlertAction(title: "Export to PDF", style: .default) { _ in self.exportPDF() }
-        let tiffAction = UIAlertAction(title: "Export to TIFF", style: .default) { _ in self.exportTIFF() }
+        let pdfAction = UIAlertAction(title: "Export as PDF", style: .default) { _ in self.exportPDF() }
+        let tiffAction = UIAlertAction(title: "Export as TIFF (1-bit)", style: .default) { _ in self.exportTIFF() }
         let cancelActon = UIAlertAction(title: "Cancel", style: .cancel)
         
         let actions = [pdfAction, tiffAction, cancelActon]
@@ -122,8 +133,22 @@ extension MultiScanResultViewController: UICollectionViewDataSource, UICollectio
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MultiScanResultCollectionViewCell",
                                                       for: indexPath) as! MultiScanResultCollectionViewCell
-        let pageImage = document.page(at: indexPath.row)?.documentImage()
-        cell.resultImageView.image = pageImage
+        
+        // Retrieve the document page
+        let page = document.page(at: indexPath.row)
+        
+        // Check detection status
+        if page?.status == SBSDKDocumentDetectionStatusError_NothingDetected {
+            
+            // Use the full original image if nothing detected
+            cell.resultImageView.image = page?.originalImage()
+            
+        } else {
+            
+            // Use the cropped image otherwise
+            cell.resultImageView.image = page?.documentImage()
+        }
+        
         return cell
     }
 }
