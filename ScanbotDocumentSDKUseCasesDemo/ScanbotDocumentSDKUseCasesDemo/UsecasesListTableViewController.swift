@@ -32,7 +32,7 @@ final class UsecasesListTableViewController: UITableViewController {
         } else if indexPath.row == 3 {
             
             // Navigate to detection on image view controller
-            navigationController?.pushViewController(GalleryUploadViewController.make(),
+            navigationController?.pushViewController(PickFromGalleryViewController.make(),
                                                      animated: true)
         }
     }

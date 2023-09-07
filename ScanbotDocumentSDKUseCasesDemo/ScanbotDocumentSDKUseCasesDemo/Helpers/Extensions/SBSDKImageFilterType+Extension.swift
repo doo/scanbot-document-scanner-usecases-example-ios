@@ -23,6 +23,7 @@ extension SBSDKImageFilterType {
          SBSDKImageFilterTypeDeepBinarization,
          SBSDKImageFilterTypeEdgeHighlight,
          SBSDKImageFilterTypeLowLightBinarization,
+         SBSDKImageFilterTypeLowLightBinarization2,
          SBSDKImageFilterTypeSensitiveBinarization]
     }
     
