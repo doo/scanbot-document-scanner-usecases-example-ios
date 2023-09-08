@@ -51,6 +51,10 @@ extension SinglePageFinderOverlayScanning {
         // Set the aspect ratio for the finder overlay
         configuration.uiConfiguration.finderAspectRatio = SBSDKAspectRatio(width: 3, andHeight: 4)
         
+        // Set colors
+        configuration.uiConfiguration.topBarButtonsActiveColor = .white
+        configuration.uiConfiguration.topBarButtonsInactiveColor = .white
+        configuration.uiConfiguration.topBarBackgroundColor = .appAccentColor
         
         // Set the font for the hint text
         configuration.textConfiguration.textHintFontSize = 16.0

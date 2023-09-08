@@ -54,8 +54,14 @@ final class SingleScanResultViewController: UIViewController {
         // Get the page
         guard let page = document.page(at: 0) else { return }
         
-        // Initialize document scanner configuration object using default configurations
+        // Initialize the cropping screen configuration object using default configurations
         let configuration = SBSDKUICroppingScreenConfiguration.default()
+        
+        // Set colors
+        configuration.uiConfiguration.topBarBackgroundColor = .appAccentColor
+        configuration.uiConfiguration.topBarButtonsColor = .white
+        configuration.uiConfiguration.bottomBarBackgroundColor = .appAccentColor
+        configuration.uiConfiguration.bottomBarButtonsColor = .white
         
         // Present the cropping view controller
         SBSDKUICroppingViewController.present(on: self,

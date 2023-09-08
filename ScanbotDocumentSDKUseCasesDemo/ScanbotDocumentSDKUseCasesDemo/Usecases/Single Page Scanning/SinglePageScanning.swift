@@ -57,6 +57,12 @@ extension SinglePageScanning {
         // Hide the auto snapping enable/disable button
         configuration.uiConfiguration.isAutoSnappingButtonHidden = true
         
+        // Set colors
+        configuration.uiConfiguration.topBarBackgroundColor = .appAccentColor
+        configuration.uiConfiguration.topBarButtonsInactiveColor = .white
+        configuration.uiConfiguration.bottomBarBackgroundColor = .appAccentColor
+        configuration.uiConfiguration.bottomBarButtonsColor = .white
+        
         // Set the font for the hint text
         configuration.textConfiguration.textHintFontSize = 16.0
         

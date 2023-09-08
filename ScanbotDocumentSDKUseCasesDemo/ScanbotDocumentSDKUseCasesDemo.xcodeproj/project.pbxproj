@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F106CAF82AAB4E5D00D66DD8 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F106CAF72AAB4E5D00D66DD8 /* UIColor+Extension.swift */; };
 		F107A86C2A97739900387B8C /* SingleScanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A86B2A97739900387B8C /* SingleScanResultViewController.swift */; };
 		F107A86F2A979D9F00387B8C /* FilterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A86E2A979D9F00387B8C /* FilterListViewController.swift */; };
 		F107A8722A97A1A600387B8C /* FilterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F106CAF72AAB4E5D00D66DD8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F107A86B2A97739900387B8C /* SingleScanResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleScanResultViewController.swift; sourceTree = "<group>"; };
 		F107A86E2A979D9F00387B8C /* FilterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewController.swift; sourceTree = "<group>"; };
 		F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */,
+				F106CAF72AAB4E5D00D66DD8 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */,
 				F1A6811B2AA6188B005EE9E7 /* SinglePageScanning.swift in Sources */,
 				F1DB42682A974F8C00CAE7E5 /* PickFromGalleryViewController.swift in Sources */,
+				F106CAF82AAB4E5D00D66DD8 /* UIColor+Extension.swift in Sources */,
 				F1B0CCAC2A96332300389EA7 /* AppDelegate.swift in Sources */,
 				F107A8722A97A1A600387B8C /* FilterListTableViewCell.swift in Sources */,
 				F107A86C2A97739900387B8C /* SingleScanResultViewController.swift in Sources */,
