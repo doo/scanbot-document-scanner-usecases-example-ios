@@ -139,10 +139,13 @@ final class SingleScanResultViewController: UIViewController {
         
         var error: Error?
         
-        // Renders the document into a PDF at the specified file url
-        error = SBSDKUIPDFRenderer.renderDocument(document,
-                                                  with: .auto,
+        // Renders the document into a searchable PDF at the specified file url
+        let configuration = SBSDKOpticalCharacterRecognizerConfiguration(mode: .ML, languages: nil)
+        error = SBSDKUIPDFRenderer.renderDocument(document, 
+                                                  withOCRConfiguration: configuration, 
+                                                  with: .custom, 
                                                   output: pdfURL)
+
         if error == nil {
             
             // Present the share screen
