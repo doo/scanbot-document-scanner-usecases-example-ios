@@ -139,10 +139,15 @@ final class SingleScanResultViewController: UIViewController {
         
         var error: Error?
         
-        // Renders the document into a PDF at the specified file url
-        error = SBSDKUIPDFRenderer.renderDocument(document,
-                                                  with: .auto,
-                                                  output: pdfURL)
+        // Create the OCR configuration for HOCR.
+        let ocrConfig = SBSDKOpticalCharacterRecognizerConfiguration.ml()
+        
+        //Create the options for the PDF rendering.
+        let options = SBSDKPDFRendererOptions(pageSize: .custom, pageOrientation: .auto, ocrConfiguration: ocrConfig)
+
+        // Renders the document into a searchable PDF at the specified file url
+        error = SBSDKUIPDFRenderer.renderDocument(document, with: options, output: pdfURL)
+
         if error == nil {
             
             // Present the share screen
