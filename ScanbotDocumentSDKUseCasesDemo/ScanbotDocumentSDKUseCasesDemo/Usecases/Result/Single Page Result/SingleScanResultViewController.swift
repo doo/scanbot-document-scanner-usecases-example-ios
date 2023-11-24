@@ -9,7 +9,7 @@ import ScanbotSDK
 
 final class SingleScanResultViewController: UIViewController {
     
-    @IBOutlet private var blurLabel: UILabel!
+    @IBOutlet private var documentQualityLabel: UILabel!
     @IBOutlet private var singlePageImageView: UIImageView!
     @IBOutlet private var exportButton: UIButton!
     
@@ -70,19 +70,39 @@ final class SingleScanResultViewController: UIViewController {
                                               andDelegate: self)
     }
     
-    // Blur Estimate
-    @IBAction private func detectBlurButtonTapped(_ sender: UIButton) {
+    // Document Quality analysis
+    @IBAction private func analyzeDocumentQualityButtonTapped(_ sender: UIButton) {
         
         // Get the cropped image
         guard let documentPageImage = document.page(at: 0)?.documentImage() else { return }
         
-        // Initialize blur estimator
-        let blurEstimator = SBSDKBlurrinessEstimator()
+        // Initialize document quality analyzer
+        let documentAnalyzer = SBSDKDocumentQualityAnalyzer()
         
-        // Get the blur estimate by passing the image to the estimator
-        let blurEstimate = blurEstimator.estimateImageBlurriness(documentPageImage)
+        // Get the document quality analysis result by passing the image to the analyzer
+        let documentQuality = documentAnalyzer.analyze(on: documentPageImage)
         
-        blurLabel.text = "Blur estimate: \(round(blurEstimate * 100)/100)"
+        documentQualityLabel.text = "Document Quality: \(map(documentQuality))"
+    }
+    
+    // Map document quality analysis result into string
+    private func map(_ documentQuality: SBSDKDocumentQuality) -> String {
+        switch documentQuality {
+        case .noDocument:
+            return "No Document"
+        case .veryPoor:
+            return "Very Poor"
+        case .poor:
+            return "Poor"
+        case .reasonable:
+            return "Reasonable"
+        case .good:
+            return "Good"
+        case .excellent:
+            return "Excelent"
+        @unknown default:
+            return ""
+        }
     }
     
     // Export

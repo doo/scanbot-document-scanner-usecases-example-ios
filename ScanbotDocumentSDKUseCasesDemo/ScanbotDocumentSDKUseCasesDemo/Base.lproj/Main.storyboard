@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PM8-kZ-VQi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PM8-kZ-VQi">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -254,11 +254,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmK-KF-AWs">
                                 <rect key="frame" x="0.0" y="772" width="393" height="80"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fky-2g-svD">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Fky-2g-svD">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="46"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k23-2x-fEt">
-                                                <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="46"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="48.333333333333336" height="46"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Filter">
@@ -269,7 +269,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAq-n8-JVU">
-                                                <rect key="frame" x="98.333333333333343" y="0.0" width="98.333333333333343" height="46"/>
+                                                <rect key="frame" x="48.333333333333336" y="0.0" width="114.33333333333331" height="46"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Manual Crop">
@@ -280,18 +280,18 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-Ff-o7f">
-                                                <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="46"/>
+                                                <rect key="frame" x="162.66666666666666" y="0.0" width="169.99999999999997" height="46"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Detect Blur">
+                                                <state key="normal" title="Analyze Document">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="detectBlurButtonTapped:" destination="xlA-de-Cuw" eventType="touchUpInside" id="wyW-CD-OAI"/>
+                                                    <action selector="analyzeDocumentQualityButtonTapped:" destination="xlA-de-Cuw" eventType="touchUpInside" id="wyW-CD-OAI"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mt7-Mh-EBs">
-                                                <rect key="frame" x="294.66666666666669" y="0.0" width="98.333333333333314" height="46"/>
+                                                <rect key="frame" x="332.66666666666669" y="0.0" width="60.333333333333314" height="46"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Export">
@@ -328,7 +328,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blurLabel" destination="32m-q3-qIa" id="3U1-LL-2EI"/>
+                        <outlet property="documentQualityLabel" destination="32m-q3-qIa" id="3U1-LL-2EI"/>
                         <outlet property="exportButton" destination="Mt7-Mh-EBs" id="bt5-lf-UN5"/>
                         <outlet property="singlePageImageView" destination="cFu-78-FbN" id="6pg-z6-s99"/>
                     </connections>
@@ -612,7 +612,7 @@
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <namedColor name="AccentColor">
-            <color red="0.7839999794960022" green="0.097999997437000275" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78431372549019607" green="0.098039215686274508" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Banner Red">
             <color red="1" green="0.92900002002716064" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
