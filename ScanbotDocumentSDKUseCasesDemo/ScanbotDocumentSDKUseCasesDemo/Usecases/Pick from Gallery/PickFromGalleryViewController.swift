@@ -26,17 +26,17 @@ final class PickFromGalleryViewController: UIViewController {
             
             // Create a document page by passing the image
             // You can pass the polygon of the area where the document is located within the pages image
-            // You can also pass the type of the filter you want to apply on the page
-            let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
+            // You can also pass an array of filters you want to apply on the page
+            let page = SBSDKDocumentPage(image: image, polygon: nil, parametricFilters: [])
             
             // Detect a document on the page
-            let result = page.detectDocument(true)
+            let result = page.detectDocument(applyPolygonIfOkay: true)
             
             // Set the detected polygon (if any) on the document page
             page.polygon = result?.polygon
             
             // Create an instance of a document
-            let document = SBSDKUIDocument()
+            let document = SBSDKDocument()
             
             // Insert the page in the document
             document.insert(page, at: 0)
@@ -50,24 +50,24 @@ final class PickFromGalleryViewController: UIViewController {
         } else if pickedImages.count > 1 {
             
             // Make an instance of the document
-            let document = SBSDKUIDocument()
+            let document = SBSDKDocument()
             
             // Iterate over multiple picked images
             pickedImages.forEach { image in
                 
                 // Create a document page by passing the image
                 // You can pass the polygon of the area where the document is located within the pages image
-                // You can also pass the type of the filter you want to apply on the page
-                let page = SBSDKUIPage(image: image, polygon: nil, filter: SBSDKImageFilterTypeNone)
+                // You can also pass an array of filters you want to apply on the page
+                let page = SBSDKDocumentPage(image: image, polygon: nil, parametricFilters: [])
                 
                 // Detect a document on the page
-                let result = page.detectDocument(true)
+                let result = page.detectDocument(applyPolygonIfOkay: true)
                 
                 // Set the detected polygon (if any) on the document page
                 page.polygon = result?.polygon
                 
                 // Insert the page in the document
-                document.insert(page, at: document.numberOfPages())
+                document.insert(page, at: document.numberOfPages)
             }
             
             // Process the document

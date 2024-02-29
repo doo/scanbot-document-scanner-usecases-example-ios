@@ -19,7 +19,7 @@ final class SinglePageFinderOverlayScanning: NSObject, SBSDKUIFinderDocumentScan
     // The scanner view controller calls this delegate method when it has scanned document pages
     // and the scanner view controller has been dismissed
     func finderScanningViewController(_ viewController: SBSDKUIFinderDocumentScannerViewController,
-                                      didFinishWith document: SBSDKUIDocument) {
+                                      didFinishWith document: SBSDKDocument) {
         
         // Process the document
         let resultViewController = SingleScanResultViewController.make(with: document)
@@ -43,13 +43,13 @@ extension SinglePageFinderOverlayScanning {
         delegateHandler = SinglePageFinderOverlayScanning(presenter: presenter)
         
         // Initialize document scanner configuration object using default configurations
-        let configuration = SBSDKUIFinderDocumentScannerConfiguration.default()
+        let configuration = SBSDKUIFinderDocumentScannerConfiguration.defaultConfiguration
         
         // Enable Auto Snapping behavior
         configuration.behaviorConfiguration.isAutoSnappingEnabled = true
         
         // Set the aspect ratio for the finder overlay
-        configuration.uiConfiguration.finderAspectRatio = SBSDKAspectRatio(width: 3, andHeight: 4)
+        configuration.uiConfiguration.finderAspectRatio = SBSDKAspectRatio(width: 3, height: 4)
         
         // Set colors
         configuration.uiConfiguration.topBarButtonsActiveColor = .white
@@ -66,7 +66,7 @@ extension SinglePageFinderOverlayScanning {
         
         // Present the document scanner on the presenter (presenter in our case is the UsecasesListTableViewController)
         SBSDKUIFinderDocumentScannerViewController.present(on: presenter,
-                                                           with: configuration,
-                                                           andDelegate: delegateHandler)
+                                                           configuration: configuration,
+                                                           delegate: delegateHandler)
     }
 }

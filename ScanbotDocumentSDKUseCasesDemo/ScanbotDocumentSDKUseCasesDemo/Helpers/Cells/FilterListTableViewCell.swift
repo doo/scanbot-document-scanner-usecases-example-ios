@@ -12,7 +12,7 @@ final class FilterListTableViewCell: UITableViewCell {
     @IBOutlet private var filterName: UILabel!
     @IBOutlet private var isFilterSelected: UIButton!
     
-    func setup(filter: SBSDKImageFilterType, selected: Bool) {
+    func setup(filter: ParametricFilterType, selected: Bool) {
         filterName.text = filter.name
         isFilterSelected.isHidden = !selected
     }

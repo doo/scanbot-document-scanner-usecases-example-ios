@@ -9,7 +9,7 @@ import ScanbotSDK
 
 final class MultiScanResultViewController: UIViewController {
     
-    var document: SBSDKUIDocument!
+    var document: SBSDKDocument!
     
     @IBOutlet private var exportButton: UIButton!
     @IBOutlet private var collectionView: UICollectionView!
@@ -21,9 +21,9 @@ final class MultiScanResultViewController: UIViewController {
         // Filter selection callback handler
         filterListViewController.selectedFilter = { [weak self] selectedFilter in
             
-            let numberOfPages = self?.document.numberOfPages() ?? 0
+            let numberOfPages = self?.document.numberOfPages ?? 0
             (0..<numberOfPages).forEach { index in
-                self?.document.page(at: index)?.filter = selectedFilter
+                self?.document.page(at: index)?.parametricFilters = [selectedFilter]
             }
             self?.collectionView.reloadData()
         }
@@ -44,25 +44,23 @@ extension MultiScanResultViewController {
         
         // Set the name and path for the pdf file
         let name = "ScanbotSDK_PDF_Example.pdf"
-        let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
-        
-        var error: Error?
+        let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
         // Create the OCR configuration for HOCR.
-        let ocrConfig = SBSDKOpticalCharacterRecognizerConfiguration.ml()
+        let ocrConfig = SBSDKOpticalCharacterRecognizerConfiguration.scanbotOCR()
         
         //Create the options for the PDF rendering.
-        let options = SBSDKPDFRendererOptions(pageSize: .custom, pageOrientation: .auto, ocrConfiguration: ocrConfig)
+        let options = SBSDKPDFRendererOptions()
 
         // Renders the document into a searchable PDF at the specified file url
-        error = SBSDKUIPDFRenderer.renderDocument(document, with: options, output: pdfURL)
+        let renderer = SBSDKPDFRenderer(options: options)
         
-        if error == nil {
+        // Start the rendering operation and store the SBSDKProgress to watch the progress or cancel the operation.
+        let progress = renderer.renderDocument(document, output: pdfURL) { finished, error in
             
-            // Present the share screen
-            share(url: pdfURL)
-        } else {
-            print(error as Any)
+            if finished && error == nil {
+                // Now you can access the pdf file at outputPDFURL.
+            }
         }
     }
     
@@ -71,25 +69,25 @@ extension MultiScanResultViewController {
         
         // Set the name and path for the TIFF file
         let name = "ScanbotSDK_TIFF_Example.tiff"
-        let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
+        let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
         // Get the cropped images of all the pages of the document
-        let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
+        let images = (0..<document.numberOfPages).compactMap { document.page(at: $0)?.documentImage }
         
         // Define export parameters for the TIFF
-        // Always using `SBSDKImageFilterTypeLowLightBinarization2` filter when exporting as TIFF
+        // In this case using lowLightBinarization2 filter when exporting as TIFF
         // as an optimal setting
-        let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages()
+        let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages
         tiffExportParameters.dpi = 300
-        tiffExportParameters.compression = .COMPRESSION_CCITT_T6
-        tiffExportParameters.binarizationFilter = SBSDKImageFilterTypeLowLightBinarization2
+        tiffExportParameters.compression = .ccitt_t6
+        tiffExportParameters.binarizationFilter = SBSDKLegacyFilter(legacyFilter: .lowLightBinarization2)
         
         // Use `SBSDKTIFFImageWriter` to write TIFF at the specified file url
         // and get the result
-        let result = SBSDKTIFFImageWriter.writeTIFF(images,
-                                                    fileURL: fileURL,
-                                                    parameters: tiffExportParameters)
-        if result == true {
+        let tiffWriter = SBSDKTIFFImageWriter(parameters: .defaultParameters, encrypter: nil)
+        let success = tiffWriter.writeTIFF(document: document, toFile: fileURL)
+        
+        if success == true {
             
             // Present the share screen if file is successfully written
             share(url: fileURL)
@@ -131,7 +129,7 @@ extension MultiScanResultViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return document.numberOfPages()
+        return document.numberOfPages
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -143,15 +141,15 @@ extension MultiScanResultViewController: UICollectionViewDataSource, UICollectio
         let page = document.page(at: indexPath.row)
         
         // Check detection status
-        if page?.status == SBSDKDocumentDetectionStatusError_NothingDetected {
+        if page?.status == .error_NothingDetected {
             
             // Use the full original image if nothing detected
-            cell.resultImageView.image = page?.originalImage()
+            cell.resultImageView.image = page?.originalImage
             
         } else {
             
             // Use the cropped image otherwise
-            cell.resultImageView.image = page?.documentImage()
+            cell.resultImageView.image = page?.documentImage
         }
         
         return cell
@@ -159,7 +157,7 @@ extension MultiScanResultViewController: UICollectionViewDataSource, UICollectio
 }
 
 extension MultiScanResultViewController {
-    static func make(with document: SBSDKUIDocument) -> MultiScanResultViewController {
+    static func make(with document: SBSDKDocument) -> MultiScanResultViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let resultViewController = storyboard.instantiateViewController(identifier: "MultiScanResultViewController") as! MultiScanResultViewController
         resultViewController.document = document

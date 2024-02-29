@@ -19,7 +19,7 @@ final class SinglePageScanning: NSObject, SBSDKUIDocumentScannerViewControllerDe
     // The scanner view controller calls this delegate method when it has scanned document pages
     // and the scanner view controller has been dismissed
     func scanningViewController(_ viewController: SBSDKUIDocumentScannerViewController,
-                                didFinishWith document: SBSDKUIDocument) {
+                                didFinishWith document: SBSDKDocument) {
         
         // Process the document
         let resultViewController = SingleScanResultViewController.make(with: document)
@@ -43,7 +43,7 @@ extension SinglePageScanning {
         delegateHandler = MultiplePageScanning(presenter: presenter)
         
         // Initialize document scanner configuration object using default configurations
-        let configuration = SBSDKUIDocumentScannerConfiguration.default()
+        let configuration = SBSDKUIDocumentScannerConfiguration.defaultConfiguration
         
         // Disable the multiple page behavior
         configuration.behaviorConfiguration.isMultiPageEnabled = false
@@ -73,7 +73,7 @@ extension SinglePageScanning {
         
         // Present the document scanner on the presenter (presenter in our case is the UsecasesListTableViewController)
         SBSDKUIDocumentScannerViewController.present(on: presenter,
-                                                     with: configuration,
-                                                     andDelegate: delegateHandler)
+                                                     configuration: configuration,
+                                                     delegate: delegateHandler)
     }
 }
