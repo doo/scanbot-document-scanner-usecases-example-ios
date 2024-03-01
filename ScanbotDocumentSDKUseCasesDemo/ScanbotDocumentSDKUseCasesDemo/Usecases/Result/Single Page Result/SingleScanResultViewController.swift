@@ -157,11 +157,11 @@ final class SingleScanResultViewController: UIViewController {
         let name = "ScanbotSDK_PDF_Example.pdf"
         let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
-        // Create the OCR configuration for HOCR.
-        let ocrConfig = SBSDKOpticalCharacterRecognizerConfiguration.scanbotOCR()
-        
-        //Create the options for the PDF rendering.
+        // Create the PDF rendering options object with default options.
         let options = SBSDKPDFRendererOptions()
+        
+        // Create and set the OCR configuration for HOCR.
+        options.ocrConfiguration = SBSDKOpticalCharacterRecognizerConfiguration.scanbotOCR()
 
         // Renders the document into a searchable PDF at the specified file url
         let renderer = SBSDKPDFRenderer(options: options)
@@ -170,7 +170,9 @@ final class SingleScanResultViewController: UIViewController {
         let progress = renderer.renderDocument(document, output: pdfURL) { finished, error in
             
             if finished && error == nil {
-                // Now you can access the pdf file at outputPDFURL.
+                
+                // Present the share screen
+                self.share(url: pdfURL)
             }
         }
     }
@@ -196,7 +198,7 @@ final class SingleScanResultViewController: UIViewController {
         // Use `SBSDKTIFFImageWriter` to write TIFF at the specified file url
         // and get the result
         let tiffWriter = SBSDKTIFFImageWriter(parameters: .defaultParameters, encrypter: nil)
-        let success = tiffWriter.writeTIFF(document: document, toFile: fileURL)
+        let success = tiffWriter.writeTIFF(with: images, toFile: fileURL)
         
         if success == true {
             
