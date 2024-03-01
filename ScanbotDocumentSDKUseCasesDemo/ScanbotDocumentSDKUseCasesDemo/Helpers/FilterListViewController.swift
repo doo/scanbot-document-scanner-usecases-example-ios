@@ -9,17 +9,44 @@ import ScanbotSDK
 
 final class FilterListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var filters = SBSDKImageFilterType.allFilters
+    private var filters = ParametricFilterType.allCases
     private var selectedFilterIndex: IndexPath?
     
-    var selectedFilter: ((_ filter: SBSDKImageFilterType) -> Void)?
+    var selectedFilter: ((_ filter: SBSDKParametricFilter) -> Void)?
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         if isBeingDismissed, let selectedFilterIndex {
-            selectedFilter?(filters[selectedFilterIndex.row])
+            let selectedType = filters[selectedFilterIndex.row]
+            let filter = filter(selectedType: selectedType)
+            selectedFilter?(filter)
         }
+    }
+    
+    func filter(selectedType: ParametricFilterType) -> SBSDKParametricFilter {
+        
+        switch selectedType {
+        case .binarization:
+            return SBSDKScanbotBinarizationFilter()
+        case .customBinarization:
+            return SBSDKCustomBinarizationFilter()
+        case .colorDocument:
+            return SBSDKColorDocumentFilter()
+        case .brightness:
+            return SBSDKBrightnessFilter(brightness: 0.6)
+        case .contrast:
+            return SBSDKContrastFilter(contrast: 4)
+        case .grayscale:
+            return SBSDKGrayscaleFilter(borderWidthFraction: 0.3,
+                                        blackOutliersFraction: 0.2,
+                                        whiteOutliersFraction: 0.6)
+        case .legacy:
+            return SBSDKLegacyFilter(legacyFilter: .lowLightBinarization2)
+        case .whiteBlackPoint:
+            return SBSDKWhiteBlackPointFilter(blackPoint: 0.6, whitePoint: 0.6)
+        }
+        
     }
     
     @IBAction private func doneButtonTapped(_ sender: UIButton) {

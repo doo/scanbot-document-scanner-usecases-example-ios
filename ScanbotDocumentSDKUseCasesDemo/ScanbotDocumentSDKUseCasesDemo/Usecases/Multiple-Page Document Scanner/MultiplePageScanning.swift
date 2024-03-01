@@ -19,15 +19,15 @@ final class MultiplePageScanning: NSObject, SBSDKUIDocumentScannerViewController
     // The scanner view controller calls this delegate method when it has scanned document pages
     // and the scanner view controller has been dismissed
     func scanningViewController(_ viewController: SBSDKUIDocumentScannerViewController,
-                                didFinishWith document: SBSDKUIDocument) {
+                                didFinishWith document: SBSDKDocument) {
         
         // Process the document
         
-        if document.numberOfPages() == 1 {
+        if document.numberOfPages == 1 {
             let resultViewController = SingleScanResultViewController.make(with: document)
             presenter?.navigationController?.pushViewController(resultViewController, animated: true)
             
-        } else if document.numberOfPages() > 1 {
+        } else if document.numberOfPages > 1 {
             let resultViewController = MultiScanResultViewController.make(with: document)
             presenter?.navigationController?.pushViewController(resultViewController, animated: true)
         }
@@ -50,7 +50,7 @@ extension MultiplePageScanning {
         delegateHandler = MultiplePageScanning(presenter: presenter)
         
         // Initialize document scanner configuration object using default configurations
-        let configuration = SBSDKUIDocumentScannerConfiguration.default()
+        let configuration = SBSDKUIDocumentScannerConfiguration.defaultConfiguration
         
         // Enable the multiple page behavior
         configuration.behaviorConfiguration.isMultiPageEnabled = true
@@ -80,7 +80,7 @@ extension MultiplePageScanning {
         
         // Present the document scanner on the presenter (presenter in our case is the UsecasesListTableViewController)
         SBSDKUIDocumentScannerViewController.present(on: presenter,
-                                                     with: configuration,
-                                                     andDelegate: delegateHandler)
+                                                     configuration: configuration,
+                                                     delegate: delegateHandler)
     }
 }

@@ -11,7 +11,7 @@
 		F107A86C2A97739900387B8C /* SingleScanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A86B2A97739900387B8C /* SingleScanResultViewController.swift */; };
 		F107A86F2A979D9F00387B8C /* FilterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A86E2A979D9F00387B8C /* FilterListViewController.swift */; };
 		F107A8722A97A1A600387B8C /* FilterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */; };
-		F107A8752A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */; };
+		F107A8752A97A2BB00387B8C /* ParametricFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8742A97A2BB00387B8C /* ParametricFilterType.swift */; };
 		F107A87C2A97B9D400387B8C /* ScanbotSDK in Frameworks */ = {isa = PBXBuildFile; productRef = F107A87B2A97B9D400387B8C /* ScanbotSDK */; };
 		F107A8802A9DCFDC00387B8C /* MultiScanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */; };
 		F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */; };
@@ -34,7 +34,7 @@
 		F107A86B2A97739900387B8C /* SingleScanResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleScanResultViewController.swift; sourceTree = "<group>"; };
 		F107A86E2A979D9F00387B8C /* FilterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewController.swift; sourceTree = "<group>"; };
 		F107A8712A97A1A600387B8C /* FilterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListTableViewCell.swift; sourceTree = "<group>"; };
-		F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SBSDKImageFilterType+Extension.swift"; sourceTree = "<group>"; };
+		F107A8742A97A2BB00387B8C /* ParametricFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametricFilterType.swift; sourceTree = "<group>"; };
 		F107A87F2A9DCFDC00387B8C /* MultiScanResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultViewController.swift; sourceTree = "<group>"; };
 		F107A8812A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiScanResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1719B122A9F40A500ED664E /* SinglePageFinderOverlayScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageFinderOverlayScanning.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		F107A8732A97A2A400387B8C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F107A8742A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift */,
+				F107A8742A97A2BB00387B8C /* ParametricFilterType.swift */,
 				F106CAF72AAB4E5D00D66DD8 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F107A8752A97A2BB00387B8C /* SBSDKImageFilterType+Extension.swift in Sources */,
+				F107A8752A97A2BB00387B8C /* ParametricFilterType.swift in Sources */,
 				F107A8822A9DD1F100387B8C /* MultiScanResultCollectionViewCell.swift in Sources */,
 				F107A86F2A979D9F00387B8C /* FilterListViewController.swift in Sources */,
 				F1A681172AA08B43005EE9E7 /* BannerUITableViewCell.swift in Sources */,
@@ -525,7 +525,7 @@
 			repositoryURL = "https://github.com/doo/scanbot-sdk-ios-spm.git";
 			requirement = {
 				kind = exactVersion;
-				version = 4.1.0;
+				version = "5.0.0-RC16";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

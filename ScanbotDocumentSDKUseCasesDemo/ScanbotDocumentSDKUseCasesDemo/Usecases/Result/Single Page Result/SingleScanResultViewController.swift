@@ -13,7 +13,7 @@ final class SingleScanResultViewController: UIViewController {
     @IBOutlet private var singlePageImageView: UIImageView!
     @IBOutlet private var exportButton: UIButton!
     
-    var document: SBSDKUIDocument!
+    var document: SBSDKDocument!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +21,15 @@ final class SingleScanResultViewController: UIViewController {
         let page = document.page(at: 0)
         
         // Check detection status
-        if page?.status == SBSDKDocumentDetectionStatusError_NothingDetected {
+        if page?.status == .error_NothingDetected {
             
             // Use the full original image if nothing detected
-            singlePageImageView.image = document.page(at: 0)?.originalImage()
+            singlePageImageView.image = document.page(at: 0)?.originalImage
             
         } else {
             
             // Use the cropped image otherwise
-            singlePageImageView.image = document.page(at: 0)?.documentImage()
+            singlePageImageView.image = document.page(at: 0)?.documentImage
         }
     }
     
@@ -41,8 +41,8 @@ final class SingleScanResultViewController: UIViewController {
         // Filter selection callback handler
         filterListViewController.selectedFilter = { [weak self] selectedFilter in
             
-            self?.document.page(at: 0)?.filter = selectedFilter
-            self?.singlePageImageView.image = self?.document.page(at: 0)?.documentImage()
+            self?.document.page(at: 0)?.parametricFilters = [selectedFilter]
+            self?.singlePageImageView.image = self?.document.page(at: 0)?.documentImage
         }
         
         self.present(filterListViewController, animated: true)
@@ -55,7 +55,7 @@ final class SingleScanResultViewController: UIViewController {
         guard let page = document.page(at: 0) else { return }
         
         // Initialize the cropping screen configuration object using default configurations
-        let configuration = SBSDKUICroppingScreenConfiguration.default()
+        let configuration = SBSDKUICroppingScreenConfiguration.defaultConfiguration
         
         // Set colors
         configuration.uiConfiguration.topBarBackgroundColor = .appAccentColor
@@ -65,16 +65,16 @@ final class SingleScanResultViewController: UIViewController {
         
         // Present the cropping view controller
         SBSDKUICroppingViewController.present(on: self,
-                                              with: page,
-                                              with: configuration,
-                                              andDelegate: self)
+                                              page: page,
+                                              configuration: configuration,
+                                              delegate: self)
     }
     
     // Document Quality analysis
     @IBAction private func analyzeDocumentQualityButtonTapped(_ sender: UIButton) {
         
         // Get the cropped image
-        guard let documentPageImage = document.page(at: 0)?.documentImage() else { return }
+        guard let documentPageImage = document.page(at: 0)?.documentImage else { return }
         
         // Initialize document quality analyzer
         let documentAnalyzer = SBSDKDocumentQualityAnalyzer()
@@ -115,9 +115,9 @@ final class SingleScanResultViewController: UIViewController {
         
         // Set the name and path for the png file
         let name = "ScanbotSDK_PNG_Example.png"
-        let pngURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
+        let pngURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
-        guard let pngData = document.page(at: 0)?.documentImage()?.pngData() else { return }
+        guard let pngData = document.page(at: 0)?.documentImage?.pngData() else { return }
         
         do {
             try pngData.write(to: pngURL)
@@ -135,9 +135,9 @@ final class SingleScanResultViewController: UIViewController {
         
         // Set the name and path for the jpg file
         let name = "ScanbotSDK_JPG_Example.jpg"
-        let jpgURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
+        let jpgURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
-        guard let jpgData = document.page(at: 0)?.documentImage()?.jpegData(compressionQuality: 0.8) else { return }
+        guard let jpgData = document.page(at: 0)?.documentImage?.jpegData(compressionQuality: 0.8) else { return }
         
         do {
             try jpgData.write(to: jpgURL)
@@ -155,26 +155,25 @@ final class SingleScanResultViewController: UIViewController {
         
         // Set the name and path for the pdf file
         let name = "ScanbotSDK_PDF_Example.pdf"
-        let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
+        let pdfURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
-        var error: Error?
+        // Create the PDF rendering options object with default options.
+        let options = SBSDKPDFRendererOptions()
         
-        // Create the OCR configuration for HOCR.
-        let ocrConfig = SBSDKOpticalCharacterRecognizerConfiguration.ml()
-        
-        //Create the options for the PDF rendering.
-        let options = SBSDKPDFRendererOptions(pageSize: .custom, pageOrientation: .auto, ocrConfiguration: ocrConfig)
+        // Create and set the OCR configuration for HOCR.
+        options.ocrConfiguration = SBSDKOpticalCharacterRecognizerConfiguration.scanbotOCR()
 
         // Renders the document into a searchable PDF at the specified file url
-        error = SBSDKUIPDFRenderer.renderDocument(document, with: options, output: pdfURL)
-
-        if error == nil {
+        let renderer = SBSDKPDFRenderer(options: options)
+        
+        // Start the rendering operation and store the SBSDKProgress to watch the progress or cancel the operation.
+        let progress = renderer.renderDocument(document, output: pdfURL) { finished, error in
             
-            // Present the share screen
-            share(url: pdfURL)
-            
-        } else {
-            print(error as Any)
+            if finished && error == nil {
+                
+                // Present the share screen
+                self.share(url: pdfURL)
+            }
         }
     }
     
@@ -183,25 +182,25 @@ final class SingleScanResultViewController: UIViewController {
         
         // Set the name and path for the TIFF file
         let name = "ScanbotSDK_TIFF_Example.tiff"
-        let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL().appendingPathComponent(name)
+        let fileURL = SBSDKStorageLocation.applicationDocumentsFolderURL.appendingPathComponent(name)
         
         // Get the cropped images of all the pages of the document
-        let images = (0..<document.numberOfPages()).compactMap { document.page(at: $0)?.documentImage() }
+        let images = (0..<document.numberOfPages).compactMap { document.page(at: $0)?.documentImage }
         
         // Define export parameters for the TIFF
-        // Always using `SBSDKImageFilterTypeLowLightBinarization2` filter when exporting as TIFF
+        // In this case using lowLightBinarization2 filter when exporting as TIFF
         // as an optimal setting
-        let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages()
+        let tiffExportParameters = SBSDKTIFFImageWriterParameters.defaultParametersForBinaryImages
         tiffExportParameters.dpi = 300
-        tiffExportParameters.compression = .COMPRESSION_CCITT_T6
-        tiffExportParameters.binarizationFilter = SBSDKImageFilterTypeLowLightBinarization2
+        tiffExportParameters.compression = .ccitt_t6
+        tiffExportParameters.binarizationFilter = SBSDKLegacyFilter(legacyFilter: .lowLightBinarization2)
         
         // Use `SBSDKTIFFImageWriter` to write TIFF at the specified file url
         // and get the result
-        let result = SBSDKTIFFImageWriter.writeTIFF(images,
-                                                    fileURL: fileURL,
-                                                    parameters: tiffExportParameters)
-        if result == true {
+        let tiffWriter = SBSDKTIFFImageWriter(parameters: .defaultParameters, encrypter: nil)
+        let success = tiffWriter.writeTIFF(with: images, toFile: fileURL)
+        
+        if success == true {
             
             // Present the share screen if file is successfully written
             share(url: fileURL)
@@ -215,11 +214,11 @@ extension SingleScanResultViewController: SBSDKUICroppingViewControllerDelegate 
     // Informs the delegate that the polygon or orientation of the edited page was changed
     // and the cropping view controller did dismiss
     func croppingViewController(_ viewController: SBSDKUICroppingViewController,
-                                didFinish changedPage: SBSDKUIPage) {
+                                didFinish changedPage: SBSDKDocumentPage) {
         
         self.document.removePage(at: 0)
         self.document.insert(changedPage, at: 0)
-        self.singlePageImageView.image = changedPage.documentImage()
+        self.singlePageImageView.image = changedPage.documentImage
     }
 }
 
@@ -256,7 +255,7 @@ extension SingleScanResultViewController {
 }
 
 extension SingleScanResultViewController {
-    static func make(with document: SBSDKUIDocument) -> SingleScanResultViewController {
+    static func make(with document: SBSDKDocument) -> SingleScanResultViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let resultViewController = storyboard.instantiateViewController(withIdentifier: "SingleScanResultViewController")
         as! SingleScanResultViewController
